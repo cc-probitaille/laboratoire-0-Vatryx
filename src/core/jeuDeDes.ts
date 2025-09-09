@@ -33,6 +33,10 @@ export class JeuDeDes {
         return JSON.stringify(joueur);
     }
 
+    public redemarrerJeu(): void {
+        this._joueurs.clear();
+    }
+
     public jouer(nom: string): string {
         const joueur = this._joueurs.get(nom);
         if (!joueur) {
