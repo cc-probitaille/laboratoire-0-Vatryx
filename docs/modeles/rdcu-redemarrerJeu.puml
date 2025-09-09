@@ -3,7 +3,7 @@ title RDCU pour redémarrerJeu
 skinparam style strictuml
 left to right direction
 
-participant ":JeuDeDes" as JeuDeDes
+participant  ":JeuDeDes" as JeuDeDes
 participant "joueurs: Map<String, Joueur>" as Joueurs
 
  --> JeuDeDes: redemarrerJeu()
@@ -17,5 +17,4 @@ end note
  note right
  selon Expert
  end note
-
 @enduml
