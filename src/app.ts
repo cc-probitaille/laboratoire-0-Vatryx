@@ -2,6 +2,7 @@ import express from 'express';
 import ExpressSession from 'express-session';
 import logger from 'morgan';
 import flash from 'express-flash-plus';
+import { Joueur } from './core/joueur';
 
 import { jeuRoutes } from './routes/jeuRouter';
 
@@ -61,14 +62,17 @@ class App {
 
     // Route pour classement (stats)
     router.get('/stats', (req, res, next) => {
-      res.render('stats',
-        // passer objet au gabarit (template) Pug
-        {
-          title: `${titreBase}`,
-          user: user,
-          // créer nouveau tableau de joueurs qui est trié par ratio
-          joueurs: JSON.parse(jeuRoutes.controleurJeu.joueurs)
-        });
+        const joueurs: Array<Joueur> = JSON.parse(jeuRoutes.controleurJeu.joueurs);
+        const joueursAvecRatio = joueurs.map((joueur: Joueur) => ({...joueur,ratio: joueur.lancers > 0 ? joueur.lancersGagnes / joueur.lancers : 0,}));
+        const joueursTriParRatio = [...joueursAvecRatio].sort((a, b) => b.ratio - a.ratio);
+        res.render('stats',
+          // passer objet au gabarit (template) Pug
+          {
+            title: `${titreBase}`,
+            user: user,
+            // créer nouveau tableau de joueurs qui est trié par ratio
+            joueurs: joueursTriParRatio
+          });
     });
 
     // Route to login

@@ -25,7 +25,7 @@ window.addEventListener("load", function()
         });
     });
 
-    demarrer.addEventListener("click", function()
+    document.getElementById("demarrer")?.addEventListener("click", function()
     {
         nomDuFormulaire = formNouveauJoueur.elements["nom"].value.trim();
 
@@ -49,7 +49,7 @@ window.addEventListener("load", function()
         }
     });
     
-    document.getElementById("redemarrer").addEventListener("click", function () {
+    document.getElementById("redemarrer")?.addEventListener("click", function () {
     fetch("/api/v1/jeu/redemarrerJeu")
     .then(function()
     {
