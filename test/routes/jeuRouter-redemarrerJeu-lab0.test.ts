@@ -18,15 +18,19 @@ beforeAll(async () => {
 
 describe('GET /api/v1/jeu/redemarrerJeu', () => {
   it("devrait redémarrer le jeu de dés avec succès!", async () => {
-     const response = await request.post('/api/v1/jeu/redemarrerJeu').send({ nom: testNom1 });
+     const response = await request.get('/api/v1/jeu/redemarrerJeu').send({ nom: testNom1 });
      expect(response.status).toBe(200);
   });
-});
 
-describe('GET /api/v1/jeu/redemarrerJeu', () => {
   it("devrait s'assurer qu'il n'y ait plus de joueurs avant de redémarrer", async () => {
      const joueursJSON = jeuRoutes.controleurJeu.joueurs;
      const joueursArray = JSON.parse(joueursJSON);
      expect(joueursArray.length).toBe(0);
   });
+
+  it("retourner erreur 404 jouer après redemarrerJeu", async () =>{
+     const response = await request.get('/api/v1/jeu/jouer/' + testNom1);
+     expect(response.status).toBe(404);
+  });
 });
+

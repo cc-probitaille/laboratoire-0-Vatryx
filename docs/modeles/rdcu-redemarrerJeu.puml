@@ -1,20 +1,17 @@
-@startuml RDCU pour redémarrerJeu
-title RDCU pour redémarrerJeu
+@startuml
 skinparam style strictuml
-left to right direction
-
-participant  ":JeuDeDes" as JeuDeDes
-participant "joueurs: Map<String, Joueur>" as Joueurs
-
- --> JeuDeDes: redemarrerJeu()
+skinparam defaultfontname Verdana
+title RDCU pour redémarrerJeu
+participant ":JeuDeDes" as c
+participant "joueurs: Map<String, Joueur>" as jm
+-> c: redemarrerJeu()
 note right
-Selon Contrôleur
+Selon Contrôleur 
 (JeuDeDés est 
 l'objet racine)
 end note
-
- JeuDeDes -> Joueurs: clear()
- note right
- selon Expert
- end note
+c -> jm: clear()
+note right
+selon Expert
+end note
 @enduml

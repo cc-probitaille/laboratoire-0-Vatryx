@@ -156,7 +156,7 @@ Voici la même figure, mais sous forme de diagramme de séquence avec l'acteur. 
 
 1. Le Joueur demande à démarrer le jeu en s'identifiant.
 1. Le Joueur demande à lancer les dés.
-1. Le Système affiche le nom du joueur et le résultat de la partie, ainsi que le nombre de parties et le nombre de fois que le Joueur a gagné. Pour un lancer, si le total est égal à sept, le Joueur a gagné. Dans tous les autres cas, il a perdu.
+1. Le Système affiche le nom du joueur et le résultat de la partie, ainsi que le nombre de parties et le nombre de fois que le Joueur a gagné. Pour un lancer, si le total est égal ou inférieur à 10, le Joueur a gagné. Dans tous les autres cas, il a perdu.
 
 *Le Joueur répète l'étape 3 jusqu'à ce qu'il ait fini.*
 
@@ -203,12 +203,23 @@ Voici la même figure, mais sous forme de diagramme de séquence avec l'acteur. 
 
 - d1.valeur est devenue un nombre entier aléatoire entre 1 et 6
 - d2.valeur est devenue un nombre entier aléatoire entre 1 et 6
+- d3.valeur est devenue un nombre entier aléatoire entre 1 et 6
 - j.nbLancers a été incrémenté sur une base de correspondance avec nom
-- j.nbLancersGagnés a été incrémenté si la totale de d1.valeur et d2.valeur est égale à 7
+- j.nbLancersGagnés a été incrémenté si la totale de d1.valeur, d2.valeur, d3.valeur est plus petite ou égale à 10
 
 **RDCU**
 
 ![Diagramme de séquence, jouer](http://www.plantuml.com/plantuml/proxy?cache=no&fmt=svg&src=https://raw.githubusercontent.com/profcfuhrmanets/log210-jeu-de-des-node-express-ts/master/docs/modeles/rdcu-jouer.puml)
+
+### Opération: `redemarrerJeu()`
+
+**Postconditions**
+
+- Toutes les instances de Joueur en cours ont été supprimées
+
+**RDCU**
+
+![Diagramme de séquence, redemarrerJeu](https://www.plantuml.com/plantuml/png/NOrDIWD144RtVOeY6nCm5nXa26JS3BWnwCfDsVCbzjXTFLHNWnufUsym5vECeCJjz_FUhXYhrHHTUGyoiNAYOfyHL4o3_zSCE7ADTinYmWdq31rOs5cm27hizayqvQga6EPpObLeZ-ecLWi-J2n6gwP7xT2Xh8WB-Ujop1LLI_CY3ppT7Ko3d6xx9MoN_PZSjYNVN1JuDQmtJhA1D9pUp1qGiz0-Y-dy5L6LtFf7EfyBeHYvU9DVHnWf-o3OECX05uBpj6rfJ0tv2DPhRbcuznyJrFuUEyXGK_m6)
 
 #### Opération: `terminerJeu(nom:String)`
 
